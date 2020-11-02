@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dvote_common/widgets/flavor-banner.dart';
+import 'package:eventual/eventual-builder.dart';
 import 'package:vocdoni/app-config.dart';
 import "dart:developer";
 import "package:flutter/material.dart";
@@ -171,22 +172,24 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   buildFab(BuildContext context) {
     // Force the toast context to descend from Scaffold and not from the widget
-    return Builder(builder: (floatingBtnContext) {
-      final entitiesCount =
-          Globals.appState.currentAccount?.entities?.value?.length ?? 0;
+    return EventualBuilder(
+        notifier: Globals.appState.currentAccount?.entities,
+        builder: (BuildContext ctx, _, __) {
+          final entitiesCount =
+              Globals.appState.currentAccount?.entities?.value?.length ?? 0;
 
-      if (entitiesCount == 0) {
-        return SizedBox.shrink();
-      }
+          if (entitiesCount == 0) {
+            return SizedBox.shrink();
+          }
 
-      return FloatingActionButton(
-        onPressed: () => onScanQrCode(floatingBtnContext),
-        backgroundColor: colorDescription,
-        child: Icon(Icons.camera_alt),
-        elevation: 5.0,
-        tooltip: getText(context, "tooltip.scanaQrCode"),
-      );
-    });
+          return FloatingActionButton(
+            onPressed: () => onScanQrCode(ctx),
+            backgroundColor: colorDescription,
+            child: Icon(Icons.camera_alt),
+            elevation: 5.0,
+            tooltip: getText(ctx, "tooltip.scanaQrCode"),
+          );
+        });
   }
 
   buildBody(BuildContext ctx) {

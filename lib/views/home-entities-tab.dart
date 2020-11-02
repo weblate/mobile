@@ -196,6 +196,7 @@ class _HomeEntitiesTabState extends State<HomeEntitiesTab> {
             ListItem(
               mainText:
                   getText(ctx, "main.youHaveNotSubscribedToAnyEntitiesYet"),
+              mainTextMultiline: 5,
               isTitle: true,
               isBold: true,
               rightIcon: null,
@@ -203,11 +204,13 @@ class _HomeEntitiesTabState extends State<HomeEntitiesTab> {
             ListItem(
               mainText:
                   getText(ctx, "main.getStartedByScanningAnEntitysQrCode"),
+              mainTextMultiline: 5,
               onTap: () => onScanQrCode(ctx),
               rightIcon: FeatherIcons.camera,
             ),
             ListItem(
               mainText: getText(ctx, "main.orSubscribeToVocdoniCommunity"),
+              mainTextMultiline: 5,
               onTap: () => onSubscribeToVocdoniCommunity(context),
               rightIcon: FeatherIcons.users,
             ),

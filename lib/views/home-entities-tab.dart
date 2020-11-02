@@ -1,10 +1,14 @@
+import 'package:dvote_common/constants/colors.dart';
+import 'package:dvote_common/widgets/toast.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import "package:flutter/material.dart";
 import 'package:vocdoni/data-models/entity.dart';
 import 'package:vocdoni/data-models/process.dart';
+import 'package:vocdoni/lib/app-links.dart';
 import 'package:vocdoni/lib/i18n.dart';
 import 'package:vocdoni/lib/globals.dart';
 import 'package:eventual/eventual-builder.dart';
+import 'package:vocdoni/view-modals/qr-scan-modal.dart';
 import 'package:vocdoni/views/entity-page.dart';
 import 'package:dvote_common/widgets/baseCard.dart';
 import 'package:dvote_common/widgets/card-loading.dart';
@@ -20,6 +24,7 @@ class HomeEntitiesTab extends StatefulWidget {
 }
 
 class _HomeEntitiesTabState extends State<HomeEntitiesTab> {
+  bool scanning = false;
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
@@ -182,15 +187,79 @@ class _HomeEntitiesTabState extends State<HomeEntitiesTab> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Icon(
               FeatherIcons.home,
               size: 50.0,
               color: Colors.black38,
             ),
-            Text(getText(context, "main.noEntities")).withTopPadding(20),
+            ListItem(
+              mainText:
+                  getText(ctx, "main.youHaveNotSubscribedToAnyEntitiesYet"),
+              isTitle: true,
+              isBold: true,
+              rightIcon: null,
+            ),
+            ListItem(
+              mainText:
+                  getText(ctx, "main.getStartedByScanningAnEntitysQrCode"),
+              onTap: () => onScanQrCode(ctx),
+              rightIcon: FeatherIcons.camera,
+            ),
+            ListItem(
+              mainText: getText(ctx, "main.orSubscribeToVocdoniCommunity"),
+              onTap: () => onSubscribeToVocdoniCommunity(context),
+              rightIcon: FeatherIcons.users,
+            ),
           ],
         ));
+  }
+
+  onScanQrCode(BuildContext floatingBtnContext) async {
+    if (scanning) return;
+    scanning = true;
+
+    try {
+      final result = await Navigator.push(
+          context,
+          MaterialPageRoute(
+              fullscreenDialog: true, builder: (context) => QrScanModal()));
+
+      if (!(result is String)) {
+        scanning = false;
+        return;
+      }
+      // await Future.delayed(Duration(milliseconds: 50));
+
+      final link = Uri.tryParse(result);
+      if (!(link is Uri) || !link.hasScheme || link.hasEmptyPath)
+        throw Exception("Invalid URI");
+
+      await handleIncomingLink(link, floatingBtnContext);
+      scanning = false;
+    } catch (err) {
+      scanning = false;
+
+      await Future.delayed(Duration(milliseconds: 10));
+
+      showMessage(
+          getText(floatingBtnContext,
+              "error.theQrCodeDoesNotContainAValidLinkOrTheDetailsCannotBeRetrieved"),
+          context: floatingBtnContext,
+          purpose: Purpose.DANGER);
+    }
+  }
+
+  onSubscribeToVocdoniCommunity(BuildContext context) async {
+    try {
+      final entity =
+          "https://vocdoni.link/entities/0x01897ea1c6cf606c5cadcb67b32087bd8343fe578e71d53b9b511f7df1f58a17";
+      final link = Uri.tryParse(entity);
+      await handleIncomingLink(link, context);
+    } catch (err) {
+      showMessage(getText(context, "error.thereWasAProblemHandlingTheLink"),
+          context: context, purpose: Purpose.DANGER);
+    }
   }
 
   onTapEntity(BuildContext ctx, EntityModel entity) {

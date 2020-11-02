@@ -66,14 +66,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     final currentAccount =
         Globals.appState.currentAccount; // It is expected to be non-null
 
-    // No organizations => identity
-    if (!currentAccount.entities.hasValue ||
-        currentAccount.entities.value.length == 0) {
-      selectedTab = 2;
-    } else {
-      // internally, this will only refresh outdated individual elements
-      currentAccount.refresh(); // detached from async
-    }
+    selectedTab = 1;
+    currentAccount.refresh(); // detached from async
+    // }
 
     super.initState();
   }
@@ -177,18 +172,12 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   buildFab(BuildContext context) {
     // Force the toast context to descend from Scaffold and not from the widget
     return Builder(builder: (floatingBtnContext) {
-      // final entitiesCount =
-      //     globalAppState.currentAccount?.entities?.value?.length ?? 0;
+      final entitiesCount =
+          Globals.appState.currentAccount?.entities?.value?.length ?? 0;
 
-      // if (entitiesCount == 0) {
-      //   return FloatingActionButton.extended(
-      //       onPressed: () => onScanQrCode(floatingBtnContext),
-      //       backgroundColor: colorDescription,
-      //       label: Row(children: [
-      //         Text(getText(context, "action.scanQrCode")),
-      //         Icon(Icons.camera_alt).withLeftPadding(15)
-      //       ]));
-      // }
+      if (entitiesCount == 0) {
+        return SizedBox.shrink();
+      }
 
       return FloatingActionButton(
         onPressed: () => onScanQrCode(floatingBtnContext),

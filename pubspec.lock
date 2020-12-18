@@ -113,29 +113,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.2"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   dvote:
     dependency: "direct main"
     description:
-      name: dvote
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../dvote-flutter"
+      relative: true
+    source: path
     version: "0.18.5"
   dvote_common:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "1d5231bd70c05560c07bbde83b93ca6feb2d0844"
-      resolved-ref: "1d5231bd70c05560c07bbde83b93ca6feb2d0844"
-      url: "https://gitlab.com/vocdoni/dvote-flutter-common.git"
-    source: git
-    version: "0.1.0"
+      path: "../dvote-flutter-common"
+      relative: true
+    source: path
+    version: "0.1.1"
   dvote_crypto:
     dependency: transitive
     description:

@@ -47,4 +47,8 @@ class AppConfig {
     "LINKING_DOMAIN",
     defaultValue: _appMode == "dev" ? "dev.vocdoni.link" : "vocdoni.link",
   );
+
+  static const termsOfServiceURL = "https://vocdoni.io/terms-of-service/";
+  static const privacyPolicyURL = "https://vocdoni.io/privacy-policy/";
+  static const pinLength = 4;
 }

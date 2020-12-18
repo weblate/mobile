@@ -1,5 +1,4 @@
 import 'package:dvote/dvote.dart';
-import 'package:dvote_common/dvote_common.dart';
 import 'package:dvote_crypto/dvote_crypto.dart';
 import 'package:dvote_common/widgets/summary.dart';
 import 'package:dvote_common/widgets/topNavigation.dart';
@@ -9,12 +8,11 @@ import 'package:vocdoni/lib/i18n.dart';
 import "package:flutter/material.dart";
 import 'package:dvote_common/constants/colors.dart';
 import 'package:vocdoni/lib/globals.dart';
-import 'package:vocdoni/lib/notifications.dart';
-import 'package:vocdoni/view-modals/pattern-prompt-modal.dart';
 import 'package:dvote_common/widgets/baseButton.dart';
 import 'package:dvote_common/widgets/listItem.dart';
 import 'package:dvote_common/widgets/section.dart';
 import 'package:dvote_common/widgets/toast.dart';
+import 'package:vocdoni/view-modals/pin-prompt-modal.dart';
 
 enum Steps { READY, AUTHORIZE_ACTION, CONFIRM_TOKEN, DONE }
 
@@ -59,7 +57,7 @@ class _RegisterValidationPageState extends State<RegisterValidationPage> {
         context,
         MaterialPageRoute(
             fullscreenDialog: true,
-            builder: (context) => PatternPromptModal(currentAccount)));
+            builder: (context) => PinPromptModal(currentAccount)));
 
     if (!mounted)
       return;
@@ -68,7 +66,7 @@ class _RegisterValidationPageState extends State<RegisterValidationPage> {
       return;
     } else if (patternLockKey is InvalidPatternError) {
       setState(() => _currentStep = Steps.READY);
-      showMessage(getText(context, "main.thePatternYouEnteredIsNotValid"),
+      showMessage(getText(context, "main.thePinYouEnteredIsNotValid"),
           context: context, purpose: Purpose.DANGER);
     } else {
       stepSendRequest(context, patternLockKey);

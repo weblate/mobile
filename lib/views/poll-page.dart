@@ -12,7 +12,7 @@ import 'package:vocdoni/lib/globals.dart';
 import 'package:eventual/eventual-builder.dart';
 import 'package:dvote_crypto/dvote_crypto.dart';
 import "dart:developer";
-import 'package:vocdoni/view-modals/pattern-prompt-modal.dart';
+import 'package:vocdoni/view-modals/pin-prompt-modal.dart';
 import 'package:vocdoni/views/poll-packaging-page.dart';
 import 'package:dvote_common/widgets/ScaffoldWithImage.dart';
 import 'package:dvote_common/widgets/baseButton.dart';
@@ -133,13 +133,13 @@ class _PollPageState extends State<PollPage> {
       // Ask the pattern
       final route = MaterialPageRoute(
           fullscreenDialog: true,
-          builder: (context) => PatternPromptModal(account));
+          builder: (context) => PinPromptModal(account));
       final patternEncryptionKey = await Navigator.push(context, route);
 
       if (patternEncryptionKey == null)
         return;
       else if (patternEncryptionKey is InvalidPatternError) {
-        showMessage(getText(context, "main.thePatternYouEnteredIsNotValid"),
+        showMessage(getText(context, "main.thePinYouEnteredIsNotValid"),
             context: context, purpose: Purpose.DANGER);
         return;
       }

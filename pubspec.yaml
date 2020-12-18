@@ -22,11 +22,15 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   # dvote: ^0.18.0  # Ok on Android (native crypto)
-  dvote: ^0.18.5  # Needed for iOS (dart crypto)
+  # dvote: ^0.18.5  # Needed for iOS (dart crypto)
+  dvote: 
+    path: ../dvote-flutter
+
   dvote_common:
-    git:
-      url: https://gitlab.com/vocdoni/dvote-flutter-common.git
-      ref: 1d5231bd70c05560c07bbde83b93ca6feb2d0844
+    path: ../dvote-flutter-common
+    # git:
+    #   url: https://gitlab.com/vocdoni/dvote-flutter-common.git
+    #   ref: 1d5231bd70c05560c07bbde83b93ca6feb2d0844
   eventual: ^0.10.2
   protobuf: ^1.0.1
   uni_links: ^0.4.0
@@ -45,7 +49,6 @@ dependencies:
   path_provider: ^1.6.21
   pull_to_refresh: ^1.6.2
   mixpanel_analytics: ^1.2.1
-  cupertino_icons: ^1.0.0
   percent_indicator: "^2.1.7+2"
   mdi: ^3.0.0
   overlay_support: ^1.0.0

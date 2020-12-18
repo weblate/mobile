@@ -165,7 +165,8 @@ class _QrScanModalState extends State<QrScanModal> {
                       ),
                       Flexible(
                         child: Text(
-                          getText(context, "main.theAddPageAllowsYouToAddLinksCodesAndQRCodesInOrderTo") +
+                          getText(context,
+                                  "main.theAddPageAllowsYouToAddLinksCodesAndQRCodesInOrderTo") +
                               ":\n" +
                               "• " +
                               getText(context,
@@ -176,7 +177,8 @@ class _QrScanModalState extends State<QrScanModal> {
                                   "main.to__findAVotingProcessOrOrganization") +
                               "\n" +
                               "• " +
-                              getText(context, "main.to__restoreABackupAccount"),
+                              getText(
+                                  context, "main.to__restoreABackupAccount"),
                           overflow: TextOverflow.clip,
                           textAlign: TextAlign.left,
                           softWrap: true,

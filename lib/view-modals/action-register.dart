@@ -9,14 +9,12 @@ import 'package:vocdoni/lib/errors.dart';
 import 'package:vocdoni/lib/i18n.dart';
 import 'package:vocdoni/lib/globals.dart';
 import "dart:developer";
-// import 'package:vocdoni/widgets/alerts.dart';
-import 'package:vocdoni/view-modals/pattern-prompt-modal.dart';
 import 'package:dvote_common/widgets/baseCard.dart';
-// import 'package:vocdoni/widgets/loading-spinner.dart';
 import 'package:dvote_common/widgets/toast.dart';
 import 'package:dvote_common/widgets/topNavigation.dart';
 import 'package:vocdoni/lib/extensions.dart';
 import 'package:http/http.dart' as http;
+import 'package:vocdoni/view-modals/pin-prompt-modal.dart';
 
 final _formKey = GlobalKey<FormState>();
 
@@ -225,11 +223,11 @@ class ActionRegisterPage extends StatelessWidget {
         context,
         MaterialPageRoute(
             fullscreenDialog: true,
-            builder: (context) => PatternPromptModal(selectedAccount)));
+            builder: (context) => PinPromptModal(selectedAccount)));
     if (patternStr == null) {
       return;
     } else if (patternStr is InvalidPatternError) {
-      showMessage(getText(context, "main.thePatternYouEnteredIsNotValid"),
+      showMessage(getText(context, "main.thePinYouEnteredIsNotValid"),
           purpose: Purpose.DANGER, context: context);
     }
 

@@ -1,3 +1,5 @@
+- Implement pin authentication & authentication versioning
+- Implement onboarding flow
 - Fix poll option padding
 - Periodically update process dates + info
 - Display spinner when refreshing dates

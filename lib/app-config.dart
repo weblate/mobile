@@ -51,4 +51,5 @@ class AppConfig {
   static const termsOfServiceURL = "https://vocdoni.io/terms-of-service/";
   static const privacyPolicyURL = "https://vocdoni.io/privacy-policy/";
   static const pinLength = 4;
+  static const identityVersion = "38";
 }

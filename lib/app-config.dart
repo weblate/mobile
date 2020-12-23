@@ -52,4 +52,11 @@ class AppConfig {
   static const privacyPolicyURL = "https://vocdoni.io/privacy-policy/";
   static const pinLength = 4;
   static const identityVersion = "38";
+  static const backupQuestionTexts = [
+    "selectQuestion",
+    "nameOfYourFirstDog",
+    "yourFavoriteAnimationMovie",
+    "nameOfYourFirstBoss",
+    "nameOfTheStreetYouLivedOnAsAChild",
+  ];
 }

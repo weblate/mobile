@@ -15,35 +15,35 @@ class OnboardingFeaturesPage extends StatelessWidget {
         onBackButton: () => Navigator.pop(context, null),
       ),
       body: Builder(
-          builder: (context) => Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Spacer(),
-                  Text(
-                    getText(context,
-                        "main.thisAppGuaranteesThatYourVoteIsAnonymousAndYourPersonalInformationIsKeptSecured"),
-                    style: TextStyle(fontSize: 18, fontWeight: fontWeightLight),
-                  ).withPadding(spaceCard),
-                  Spacer(),
-                  Row(
-                    children: [
-                      Spacer(),
-                      NavButton(
-                        text: getText(context, "main.next"),
-                        style: NavButtonStyle.NEXT,
-                        onTap: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    OnboardingAccountNamingPage()),
-                          )
-                        },
-                      ),
-                    ],
-                  ).withPadding(spaceCard),
-                ],
-              )),
+        builder: (context) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Spacer(),
+            Text(
+              getText(context,
+                  "main.thisAppGuaranteesThatYourVoteIsAnonymousAndYourPersonalInformationIsKeptSecured"),
+              style: TextStyle(fontSize: 18, fontWeight: fontWeightLight),
+            ).withPadding(spaceCard),
+            Spacer(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Row(
+        children: [
+          Spacer(),
+          NavButton(
+            text: getText(context, "main.next"),
+            style: NavButtonStyle.NEXT,
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => OnboardingAccountNamingPage()),
+              )
+            },
+          ),
+        ],
+      ).withPadding(spaceCard),
     );
   }
 }

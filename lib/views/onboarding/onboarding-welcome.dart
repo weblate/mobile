@@ -10,47 +10,48 @@ class OnboardingWelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Builder(
-          builder: (context) => Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Spacer(),
-                  Text(
-                    getText(context, "main.welcome"),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: colorDescription,
-                    ),
-                  ),
-                  Text(
-                    getText(context,
-                        "main.vocdoniAllowsYouToStayConnectedToYourCollectivesByParticipatingInSecureVotingProcessesAndFollowingTheirActivity"),
-                    style: TextStyle(fontSize: 18, fontWeight: fontWeightLight),
-                  ).withPadding(spaceCard),
-                  Spacer(),
-                  Row(
-                    children: [
-                      NavButton(
-                        style: NavButtonStyle.BASIC,
-                        text: getText(context, "action.recoverAccount"),
-                        onTap: () => showRestoreIdentity(context),
-                      ),
-                      Spacer(),
-                      NavButton(
-                        style: NavButtonStyle.NEXT_FILLED,
-                        text: getText(context, "main.letsGo"),
-                        onTap: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OnboardingFeaturesPage()),
-                          )
-                        },
-                      ),
-                    ],
-                  ).withPadding(spaceCard),
-                ],
-              )),
+        builder: (context) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Spacer(),
+            Text(
+              getText(context, "main.welcome"),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+                color: colorDescription,
+              ),
+            ),
+            Text(
+              getText(context,
+                  "main.vocdoniAllowsYouToStayConnectedToYourCollectivesByParticipatingInSecureVotingProcessesAndFollowingTheirActivity"),
+              style: TextStyle(fontSize: 18, fontWeight: fontWeightLight),
+            ).withPadding(spaceCard),
+            Spacer(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Row(
+        children: [
+          NavButton(
+            style: NavButtonStyle.BASIC,
+            text: getText(context, "action.recoverAccount"),
+            onTap: () => showRestoreIdentity(context),
+          ),
+          Spacer(),
+          NavButton(
+            style: NavButtonStyle.NEXT_FILLED,
+            text: getText(context, "main.letsGo"),
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => OnboardingFeaturesPage()),
+              )
+            },
+          ),
+        ],
+      ).withPadding(spaceCard),
     );
   }
 

@@ -25,7 +25,6 @@ import 'package:vocdoni/views/identity-backup-page.dart';
 import 'package:vocdoni/views/entity-page.dart';
 import 'package:vocdoni/views/dev/dev-menu.dart';
 import 'package:eventual/eventual-builder.dart';
-// import 'package:vocdoni/view-modals/sign-modal.dart';
 import "views/home.dart";
 
 /// The actual main function is defined on main-dev.dart and main-production.dart.
